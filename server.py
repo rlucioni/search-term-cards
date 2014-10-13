@@ -3,9 +3,8 @@ import requests
 import os
 import json
 
-f = open('static/data/terms.json', 'r')
-TERMS = json.loads(f.read())
-f.close()
+with open('static/data/terms.json', 'rb') as f:
+    TERMS = json.loads(f.read())
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -20,6 +19,6 @@ def get_terms():
 
 # Run the app
 if __name__ == '__main__':
-    app.debug = True
-    port = int(os.environ.get("PORT", 5001))
+    # app.debug = True
+    port = int(os.environ.get('PORT', 5001))
     app.run(host='0.0.0.0', port=port)
