@@ -61,8 +61,7 @@
     top: 50%;
     right: 0;
     left: 0;
-    font: bold 1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    /*font: bold 1em 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+    font: bold 1em 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-shadow: 0 0.025em 0 rgba(0, 0, 0, 0.1);
     vertical-align: baseline;
     padding: 0 0.5em;
@@ -1044,7 +1043,7 @@ body {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  font: 13px Arial, sans-serif; }
+  font: 13px 'Montserrat', Arial, sans-serif; }
 
 body.idle, body.idle * {
   cursor: none !important; }
@@ -1170,7 +1169,7 @@ body.idle .idleable {
     display: inline-block;
     vertical-align: bottom;
     color: #fff;
-    font: 17px Arial, sans-serif;
+    font: 17px 'Montserrat', Arial, sans-serif;
     line-height: 32px;
     margin-left: 4px;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
