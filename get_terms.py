@@ -21,9 +21,9 @@ auth_response = requests.post(auth_url, data=parameters)
 if auth_response.status_code is 200:
     access_token = json.loads(auth_response.content)['access_token']
 else:
-    raise Exception("Authentication request failed with status code {}".format(auth_response.status_code))
+    raise Exception("Token refresh failed with status code {}".format(auth_response.status_code))
 
-start_date = datetime.datetime.now() + datetime.timedelta(-7) # Once search is launched, change this to a 1 day difference
+start_date = datetime.datetime.now() + datetime.timedelta(-int(os.environ.get('DAYS_BACK')))
 end_date = datetime.datetime.now()
 ga_url = 'https://www.googleapis.com/analytics/v3/data/ga?' \
     'ids=ga%3A86300562&' \
