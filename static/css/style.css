@@ -1154,13 +1154,14 @@ body.idle .idleable {
     left: 22px; }
   #logo a {
     padding-left: 60px;
-    background: url("../images/logo-white.png") left bottom no-repeat;
+    background: url("../images/logo-edx-optimized-knockout.svg") left bottom no-repeat;
+    background-size: 61px 35px;
     text-decoration: none;
     display: block; }
     @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
       #logo a {
-        background-image: url("../images/logo-white2x.png");
-        background-size: 61px 35px;
+        /*background-image: url("../images/logo-edx-optimized-knockout.svg");*/
+        /*background-size: 61px 35px;*/
         background-position: left bottom; } }
   #logo img {
     vertical-align: bottom;
@@ -1169,9 +1170,9 @@ body.idle .idleable {
     display: inline-block;
     vertical-align: bottom;
     color: #fff;
-    font: 17px 'Montserrat', Arial, sans-serif;
+    font: 21px 'Montserrat', Arial, sans-serif;
     line-height: 32px;
-    margin-left: 4px;
+    margin-left: 7px;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
     -webkit-font-smoothing: antialiased; }
 
@@ -1180,7 +1181,7 @@ body.idle .idleable {
   .no-pointerevents #matrix-select-container.showing {
     display: block; }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   #logo {
     top: 9px;
     right: 12px;
