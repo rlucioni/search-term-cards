@@ -1132,7 +1132,7 @@ body.idle .idleable {
   display: inline-block;
   border-bottom: 1px dotted #fff; }
 
-#region-select {
+/*#region-select {
   -webkit-tap-highlight-color: transparent;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   opacity: 0;
@@ -1142,7 +1142,7 @@ body.idle .idleable {
   margin-top: -1px;
   z-index: 3; }
   [dir=rtl] #region-select {
-    direction: rtl; }
+    direction: rtl; }*/
 
 #logo {
   z-index: 2;

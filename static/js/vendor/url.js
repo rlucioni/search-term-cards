@@ -1,4 +1,4 @@
-//https://github.com/georgealways/url.js/blob/master/url.source.js
+// https://github.com/georgealways/url.js
 (function(url) {
     
   var result = {},

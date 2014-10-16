@@ -1,5 +1,5 @@
 ;(function() {
-    var MAX_COLS = url.tsq == 'tower' ? 7 : 5,
+    var MAX_COLS = 5,
         FADE_DELAY = 5000,
         FADE_DUR = 500,
         MIN_DELAY = 3000,
@@ -19,49 +19,7 @@
         matrixSelect,
         rows,
         cols,
-        pipe,
-
-        showTitle = (function() {
-            if (url.tsq == 'tower') {
-                return function(wiper) {
-                    return wiper.id == 6 && wiper.numLoops % 2 == 0;
-                }
-            } else if (url.tsq == 'marquee') {
-                return function(wiper) {
-                    return wiper.id == 5 && wiper.numLoops % 3 == 0;
-                }
-            } else { 
-                return function() {
-                    return false;
-                }
-            }
-        })(),
-
-        showLogo = (function() {
-            if (url.tsq == 'today') {
-                return function(wiper) {
-                    return wiper.numLoops % 2 == 1;
-                }
-            } else {
-                return function() {
-                    return false;
-                }
-            }
-        })(),
-
-        tsqMarqueeWidths = [320, 520],
-        tsqMarqueeLefts = [0, tsqMarqueeWidths[0]],
-        tsqTowerHeights = [68, 90, 94, 110, 105, 100, 155],
-
-        tsqTowerTops = (function() {
-            var r = [], s = 0, l = tsqTowerHeights.length;
-            for (var i = 0; i < l; i++) {
-                r[i] = s;
-                s += tsqTowerHeights[i];
-            }
-
-            return r;
-        })();
+        pipe;
 
     init();
     getTerms(function(t) {
@@ -74,11 +32,7 @@
     });
 
     function getTerms(callback) {
-        if (url.terms) {
-            callback({ 1: url.terms.split(/ ?, ?/) });
-        } else {
-            $.getJSON(url.tsq ? '/api/tsqterms/' : '/api/terms/', callback);
-        }
+        $.getJSON('/api/terms/', callback);
 
         setTimeout(function() {
             getTerms(callback);
@@ -247,18 +201,8 @@
 
         wiper.next = function() {
             clearTimeout(wiper.timeout);
-
-            if (showLogo(wiper)) {
-                // What is this? Used to pull from /orangeroom/logo.png
-                wiper.showArbitrary('<img src="/static/images/logo-white.png">', reallyDelayedNext)
-            } else if (showTitle(wiper)) {
-                wiper.typer.forceSpeed = 10;
-                wiper.show(TITLE, reallyDelayedNext);
-            } else { 
-                wiper.typer.forceSpeed = 0;
-                wiper.show(terms[++termIndex%terms.length], delayedNext);
-            }
-
+            wiper.typer.forceSpeed = 0;
+            wiper.show(terms[++termIndex%terms.length], delayedNext);
             wiper.numLoops++;
         };
 
@@ -314,21 +258,9 @@
 
                 wipers[k].disabled = false;
                 v.style.left = (col) / (cols+1) * 100 + '%';
-
-                if (url.tsq == 'tower') {
-                    v.style.height = tsqTowerHeights[row] + 'px';
-                    v.style.top = tsqTowerTops[row] + 'px';
-                    v.style.width = '100%';
-                } else if (url.tsq == 'marquee') {
-                    v.style.height = '100%';
-                    v.style.top = 0;
-                    v.style.left = tsqMarqueeLefts[col] + 'px';
-                    v.style.width = tsqMarqueeWidths[col] + 'px';
-                } else { 
-                    v.style.height = 1 / (rows+1) * 101 + '%';
-                    v.style.top = (row) / (rows+1) * 100 + '%';
-                    v.style.width = 1 / (cols+1) * 101 + '%'; // hack for 1px line that shows up
-                }
+                v.style.height = 1 / (rows+1) * 101 + '%';
+                v.style.top = (row) / (rows+1) * 100 + '%';
+                v.style.width = 1 / (cols+1) * 101 + '%'; // hack for 1px line that shows up
 
                 v.style.display = 'block';
             }
@@ -387,7 +319,6 @@
         if (rows != 0) args.r = rows+1;
         if (cols != 0) args.c = cols+1;
         if (pipe != 0) args.p = pipe;
-        if (url.hl) args.hl = url.hl;
 
         var str = [];
         _.each(args, function(v, k) {
